@@ -1479,3 +1479,10 @@ a.newer-posts:hover {
     font-size: 21px;
   }
 }
+
+/*
+디자인 버그 수정
+*/
+a:-webkit-any-link {
+  text-decoration: none !important;
+}
