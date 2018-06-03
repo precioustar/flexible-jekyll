@@ -1552,3 +1552,7 @@ const foo = function* () {
 * [Airbnb JavaScript Style Guide - ES5(Deprecated)](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
 * [ESLint Coding Convention](http://eslint.org/docs/developer-guide/code-conventions)
 * [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
+
+
+# 출처
+* https://github.com/nhnent/fe.javascript/wiki/%EC%95%88%ED%8B%B0-%ED%8C%A8%ED%84%B4
