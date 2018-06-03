@@ -131,7 +131,7 @@ jQuery 같은 오픈 소스들은 어디서나 직접 접근이 가능한 url을
 <html>
     <head>
         <title>HTML Page</title>
-        <script src="http://code.jquery.com/jquery-1.8.3.min.js"%3E%3C/script%3E
+        <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
             ...
 ```
 
