@@ -552,7 +552,7 @@ template {
 
 /* Keyword.Constant */
 .highlight .kd {
-  color: #069;
+  color: #d73a49;
 }
 
 /* Keyword.Declaration */
@@ -592,7 +592,7 @@ template {
 
 /* Name.Attribute */
 .highlight .nb {
-  color: #366;
+  color: #005cc5;
 }
 
 /* Name.Builtin */
