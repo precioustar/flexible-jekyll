@@ -4,7 +4,7 @@ title: Anti-Pattern
 date: 2018-06-03 00:00:00 +0900
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: js-1.png # Add image post (optional)
-tags: [Js, Conference] # add tag
+tags: [Js, AntiPattern] # add tag
 ---
 ## 개요
 
