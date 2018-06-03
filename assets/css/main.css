@@ -443,7 +443,7 @@ template {
 }
 
 .highlighter-rouge {
-  color: #ce887b;
+  /* color: #ce887b; */
   font-weight: 400;
   border: 1px solid #607D8B;
   -webkit-border-radius: 3px;
@@ -489,7 +489,7 @@ template {
 
 /* Comment.Preproc */
 .highlight .c1 {
-  color: #999;
+  color: #1AAF50;
 }
 
 /* Comment.Single */
