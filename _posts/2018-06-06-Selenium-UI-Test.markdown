@@ -3,7 +3,7 @@ layout: post
 title: Seleinum을 이용한 UI 자동화 연습
 date: 2018-06-06 12:00:00 +0900
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
-img: selenium.png # Add image post (optional)
+img: selenium2.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [Selenium]
 ---
@@ -128,3 +128,4 @@ public class SeleniumTest extends TestCase {
 - https://nesoy.github.io/articles/2017-03/Selenium
 - http://wiki.gurubee.net/pages/viewpage.action?pageId=6259762
 - http://chromedriver.chromium.org/getting-started
+- http://www.ulsanstar.com/blog/2014/01/21/how-to-use-selenium-webdriver/
