@@ -14,7 +14,7 @@ tags: [Selenium]
 
 ### pom.xml maven 설정
 - Maven Repository : https://mvnrepository.com/ 
-```
+``` xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -63,7 +63,7 @@ tags: [Selenium]
 
 ## 자바를 이용한 크롬 검색 테스트하기
 - 최신 크롬 드라이버 : http://chromedriver.chromium.org/downloads
-```
+``` java
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
