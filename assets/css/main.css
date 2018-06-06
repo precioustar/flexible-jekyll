@@ -142,7 +142,7 @@ kbd,
 samp {
   font-family: monospace, monospace;
   /* 1 */
-  font-size: 1em;
+  font-size: 13px;
   /* 2 */
 }
 
@@ -632,7 +632,7 @@ template {
 
 /* Name.Label */
 .highlight .nn {
-  color: #0cf;
+  color: #515151;
 }
 
 /* Name.Namespace */
@@ -814,6 +814,8 @@ pre {
   white-space: pre-wrap;
   word-wrap: break-word;
   word-break: break-all;
+  background-color: #f6f8fa;
+  border: 1px solid #607D8B;
 }
 
 pre code {
