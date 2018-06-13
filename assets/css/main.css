@@ -463,7 +463,7 @@ template {
 /* Comment */
 .highlight .err {
   color: #a00;
-  background-color: #faa;
+  /* background-color: #faa; */
 }
 
 /* Error */
