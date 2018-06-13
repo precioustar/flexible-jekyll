@@ -1,111 +1,52 @@
 ---
 layout: post
-title: Seleinum을 이용한 자동 로그인 & 글쓰기 구현
-date: 2018-06-09 13:00:00 +0900
+title: 자바 System Property를 이용한 Tomcat (톰캣) 포트 동적 설정
+date: 2018-06-13 17:00:00 +0900
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
-img: selenium2.jpg # Add image post (optional)
+img: Tomcat.png # Add image post (optional)
 fig-caption: # Add figcaption (optional)
-tags: [Selenium]
+tags: [Tomcat]
 ---
 
-## 셀레니움을 이용한 배틀그라운드 인벤 자동 로그인 & 글쓰기 구현
-- 최신 크롬 드라이버 : http://chromedriver.chromium.org/downloads
+## 1. 개요
+Multi Instance 구성이나, 자동 배포 등을 할 때 걸림돌이 되는 것이 포트 구성인데, Java System Property를 이용하여 server.xml 수정없이 포트 구성을 할 수 있는 방법을 고민하였습니다.
+물론 최초에 template이 되는 server.xml은 한 번 만들어야 합니다.
 
-{% highlight java %}
-package module.selenium.test;
+## 2. 설정
+원래 server.xml에는 다음과 같이 총 4개의 포트 구성이 있습니다.
 
-import java.util.concurrent.TimeUnit;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import junit.framework.TestCase;
+{% highlight xml %}
+<Server port="8005" shutdown="SHUTDOWN">
+<Connector port="8080" protocol="HTTP/1.1" ...
+<Connector port="8009" protocol="AJP/1.3" ...
+... redirectPort="8443" />
 
-/**
- * @author psj 크롬 드라이버 오류 : --ignore-certificate-errors 이 오류가 생성시 크롬 드라이버를 검색 후,
- *         최신 버전으로 다운로드 받고 경로 설정
- *         {@link http://chromedriver.chromium.org/downloads}
- */
-public class AutomatedTesting extends TestCase {
-	private WebDriver driver;
-	private String baseUrl;
-	private StringBuffer verificationsErrors = new StringBuffer();
-
-	@Before
-	public void setUp() throws Exception {
-		// 자신의 데스크탑에 다운로드 받은 크롬 드라이브 경로 설정
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\psj\\Downloads\\chromedriver_win32\\chromedriver.exe");
-		driver = new ChromeDriver();
-		baseUrl = "http://battlegrounds.inven.co.kr";
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		System.out.println("===========chromedriver start===========");
-	}
-
-	@Test
-	public void testDriver() throws Exception {
-		driver.get(baseUrl + "/");
-		// 크롬이 실행될때 대기시간을 고려해서 스케줄러의 정확도를 위해 현재 실행중인 스레드를 지정된 밀리 초 동안 일시적으로 실행 중지 되도록
-		// 스케줄링 설정
-		Thread.sleep(2000);
-		
-		//로그인 버튼 클릭
-		driver.findElement(By.xpath("//*[@id=\"comHeadOutlogin\"]/div[1]/div/a[1]")).click();
-		
-		driver.findElement(By.id("user_id")).sendKeys("");// 아이디 넣기
-		Thread.sleep(1000);
-		driver.findElement(By.id("password")).sendKeys("");// 비밀번호 넣기
-		driver.findElement(By.id("loginBtn")).click();
-
-		Thread.sleep(2000);		
-		
-		//전체게시판 클릭
-		driver.get("http://www.inven.co.kr/board/powerbbs.php?come_idx=5046");
-		
-		//글쓰기 클릭
-		driver.findElement(By.xpath("//*[@id=\"listtop\"]/div[2]/ul/li[2]/a/img")).click();
-		
-		//제목 입력
-		driver.findElement(By.xpath("//*[@id=\"board_write\"]/table/tbody/tr[1]/td/table[1]/tbody/tr/td[3]/input")).sendKeys("SELENIUM JAVA API TEST");
-		
-		Thread.sleep(2000);
-		
-		//iframe id값을 조회해서 내부로 접근
-		driver.switchTo().frame(driver.findElement(By.id("webeditor")));
-		
-		JavascriptExecutor jsDriver=(JavascriptExecutor) driver;
-		
-		String contents="function getElementByXpath(path) {\r\n" + 
-				"  return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;\r\n" + 
-				"}\r\n" + 
-				"\r\n" + 
-				"getElementByXpath(\"/html/body\").append(\"SELENIUM JAVA API TEST\");\r\n" + 
-				"\r\n" + 
-				"\r\n" + 
-				"\r\n" + 
-				"";
-		
-		jsDriver.executeScript(contents);
-		
-		//iframe 빠져나오기
-		driver.switchTo().defaultContent();
-		
-		//글쓰기완료
-		driver.findElement(By.xpath("//*[@id=\"bttnComplete1\"]")).click();
-
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		Thread.sleep(5000);
-		driver.quit();
-		String verificationErrorString = verificationsErrors.toString();
-		if (!"".equals(verificationErrorString)) {
-			fail(verificationErrorString);
-		}
-	}
-}
+다음과 같이 수정합니다.
 {% endhighlight %}
+
+- 8005 -> ${port.shutdown}
+- 8080 -> ${port.http}
+- 8009 -> ${port.ajp}
+- 8443 -> ${port.https}
+
+즉, 이렇게 되겠죠.
+
+{% highlight xml %}
+<Server port="${port.shutdown}" shutdown="SHUTDOWN">
+<Connector port="${port.http}" protocol="HTTP/1.1" ...
+<Connector port="${port.ajp}" protocol="AJP/1.3" ...
+... redirectPort="${port.https}" />
+{% endhighlight %}
+
+그리고 적절한 기동 스크립트에 다음과 같이 System Property를 적용합니다.
+
+{% highlight xml %}
+JAVA_OPTS=" ${JAVA_OPTS} -Dport.http=${INST_PORT}"
+JAVA_OPTS=" ${JAVA_OPTS} -Dport.https=`expr ${INST_PORT} + 363`"
+JAVA_OPTS=" ${JAVA_OPTS} -Dport.ajp=`expr ${INST_PORT} - 71`"
+JAVA_OPTS=" ${JAVA_OPTS} -Dport.shutdown=`expr ${INST_PORT} - 75`" 
+{% endhighlight %}
+
+
+### 출처
+- https://sarc.io/index.php/tomcat/211-system-property-tomcat
