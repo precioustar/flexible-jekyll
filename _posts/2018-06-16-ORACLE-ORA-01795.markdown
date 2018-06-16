@@ -23,16 +23,16 @@ tags: [ORACLE]
 1) IN은 서비쿼리를 사용하여 보다 유연한 확장이 가능하다.  
 2) IN은 반드시 하나의 컬럼이 비교되어야 하므로 나중에 인덱스 구성에 대한 전략을 수립할 때 유리하다.  
 3) 옵티마이저는 복잡한 OR에 매우 취약하다.  
-#
+<hr> 
 
 ## 왜 IN 구문에 1000 개 이상의 값이 있었는지?
 - 1000 개 이상의 DB 목록을 조회했을때, ORA-01795 ERROR CODE 발생 
 - 사용자가 도움을 요청하는 포럼 게시물에서도  IN 절에는 1 백만 개가 넘는 값이 넘을때의 에러 확인  
-#
+<hr> 
 
 ## ORA-01795에 대한 해결 방법
 - 오라클에서는 1000개의 값이 한계이기 때문에 이에 대한 해결 방법이 필요합니다. 쿼리 실행 방법에 따라 몇 가지 해결 방법이 있습니다.  
-#
+<hr> 
 
 ### iBatis Iterate 문법
 - Collection을 반복하거나 리스트내 각각을 위해 몸체부분을 반복  
@@ -47,7 +47,7 @@ tags: [ORACLE]
 ### Dynamic Tag(ADD)
 - 동적 SQL은 iBATIS의 매우 강력한 기능입니다. 때로는 매개 변수 객체의 상태에 따라 WHERE 절을 변경해야합니다. 
 이러한 상황에서, iBATIS는 SQL의 재사용 성과 유연성을 향상시키기 위해 매핑 된 명령문 내에서 사용할 수있는 동적 SQL 태그 세트를 제공합니다.  
-#
+<hr> 
 
 ### 기존 쿼리
 {% highlight xml %}
@@ -81,7 +81,7 @@ WHERE table_name IN ( table_list[0], table_list[1], table_list[2]..... ,table_li
 
 ORDER BY table_name asc
 {% endhighlight %}  
-#
+<hr> 
 
 ### 변경된 쿼리
 {% highlight xml %}
