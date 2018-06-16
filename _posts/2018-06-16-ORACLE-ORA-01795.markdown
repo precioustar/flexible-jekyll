@@ -34,15 +34,14 @@ tags: [ORACLE]
 - 오라클에서는 1000개의 값이 한계이기 때문에 이에 대한 해결 방법이 필요합니다. 쿼리 실행 방법에 따라 몇 가지 해결 방법이 있습니다.  
 <hr> 
 
-### iBatis Iterate 문법
+## iBatis Iterate 문법
 - Collection을 반복하거나 리스트내 각각을 위해 몸체부분을 반복  
-*Iterate Attributes*
+### Iterate Attributes
 - prepend - preparedstatement에 붙을 오버라이딩 가능한 SQL 옵션
 - property - 반복되기 위한 java.util.List 타입의 property
 - open - 반복문 전체를 열기 위한 문자열, 괄호를 위한 사용에 유용함
 - close - 반복문 전체를 닫기, 위한 문자열, 괄호를 위한 사용에 유용함
 - conjunction - 각각 반복문 사이에 적용되기 위한 문자열, AND 그리고 OR 사용에 유용함  
-
 
 ### Dynamic Tag(ADD)
 - 동적 SQL은 iBATIS의 매우 강력한 기능입니다. 때로는 매개 변수 객체의 상태에 따라 WHERE 절을 변경해야합니다. 
