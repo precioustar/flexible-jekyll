@@ -26,8 +26,8 @@ tags: [j2ee]
 > 서비스와 컴포넌트 검색을 쉽게 하는 패턴이다.
 * Session Facade 패턴
 > 비즈니스 티어 컴포넌트를 캡슐화하고, 원격 클라이언트에서 접근할 수 있는 서비스를 제공하는 패턴이다.
-* Composite Entity 패턴
-로컬 엔티티 빈과 POJO를 이용하여 큰 단위의 엔티티 객체를 구현한다.
+* Composite Entity 패턴  
+> 로컬 엔티티 빈과 POJO를 이용하여 큰 단위의 엔티티 객체를 구현한다.
 * Transfer Object 패턴
 > 일명 Value Object 패턴이라고 많이 알려져 있다. 데이터를 전송하기 위한 객체에 대한 패턴이다.
 * Transfer Object Assembler 패턴
@@ -38,6 +38,7 @@ tags: [j2ee]
 > 일명 DAO라고 많이 알려져 있다. DB에 접근을 전달하는 클래스를 추상화하고 캡슐화한다.
 * Service Activator 패턴
 > 비동기적 호출을 처리하기 위한 패턴이다.  
+--- 
 <hr>
 ![j2ee]({{site.baseurl}}/assets/img/j2ee.gif)  
 > 이 그림은 사용자의 요청이 처리되는 순서로 생각하면서 위에서부터 아래로 보면 된다.  
