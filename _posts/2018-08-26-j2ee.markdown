@@ -41,9 +41,7 @@ tags: [j2ee]
 <br/>
 <hr>
 <br/>
-<div align="center">
-![j2ee]({{site.baseurl}}/assets/img/j2ee.gif)  
-</div>
+![j2ee]({{site.baseurl}}/assets/img/j2ee.png)  
 > 이 그림은 사용자의 요청이 처리되는 순서로 생각하면서 위에서부터 아래로 보면 된다.  
 가장 윗부분은 프리젠테이션 티어, 중간 부분은 비즈니스 티어, 하단 부분은 인테그레이션 티어이다.  
 위로 갈수록 View에 가깝고, 아래로 갈수록 DB와 같은 저장소에 가깝다.  
