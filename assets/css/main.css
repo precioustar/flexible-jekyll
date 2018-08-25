@@ -40,10 +40,7 @@ section {
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.
  */
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
+h1 {margin-top: 24px;margin-bottom: 16px;line-height: 1.25;}
 
 /* Grouping content
    ========================================================================== */
@@ -782,7 +779,10 @@ body {
 }
 
 h1 {
-  font-weight: 400;
+  font-weight: 600;
+  padding-bottom: 0.3em;
+  font-size: 1.5em;
+  border-bottom: 1px solid #eaecef;
 }
 
 img {
@@ -1197,7 +1197,7 @@ a.newer-posts:hover {
 
 /* - - - - - - - - - - Post Page Styles - - - - - - - - - - */
 .wrap-content {
-  padding: 20px;
+  padding: 40px !important;
 }
 
 .header-page {
