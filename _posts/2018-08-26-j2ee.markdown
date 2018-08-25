@@ -1,14 +1,13 @@
 ---
 layout: post
 title: J2EE 디자인 패턴
-date: 2018-06-13 17:00:00 +0900
+date: 2018-08-26 01:10:00:00 +0900
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: J2ee.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [j2ee]
 ---
-
-# J2EE 디자인 패턴?
+# J2EE 디자인 패턴이란?
 * Intercepting Filter 패턴
 > 요청 타입에 따라 다른 처리를 하기 위한 패턴이다.
 * Front Controller 패턴
@@ -40,9 +39,7 @@ tags: [j2ee]
 * Service Activator 패턴
 > 비동기적 호출을 처리하기 위한 패턴이다.  
 ---
-![j2ee]({{site.baseurl}}/assets/img/j2ee.gif)
+![j2ee]({{site.baseurl}}/assets/img/j2ee.gif)  
 > 이 그림은 사용자의 요청이 처리되는 순서로 생각하면서 위에서부터 아래로 보면 된다.  
 가장 윗부분은 프리젠테이션 티어, 중간 부분은 비즈니스 티어, 하단 부분은 인테그레이션 티어이다.  
 위로 갈수록 View에 가깝고, 아래로 갈수록 DB와 같은 저장소에 가깝다.
-
-
