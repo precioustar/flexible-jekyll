@@ -40,7 +40,7 @@ tags: [j2ee]
 > 비동기적 호출을 처리하기 위한 패턴이다.
 <br/>
 <br/>
-- - -
+<hr>
 <br/>
 <br/>
 ![j2ee]({{site.baseurl}}/assets/img/j2ee.png)  
@@ -49,7 +49,7 @@ tags: [j2ee]
 위로 갈수록 View에 가깝고, 아래로 갈수록 DB와 같은 저장소에 가깝다.
 <br/>
 <br/>
-- - -
+<hr>
 <br/>
 <br/>
 ### 출처
