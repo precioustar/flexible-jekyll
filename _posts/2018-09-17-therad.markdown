@@ -175,6 +175,10 @@ public class ThreadPoolSample implements Runnable {
 또한 , __InterruptedException__이 발생했을 떄의 처리가 예외 클래스의 __printstacktrace__ 메서드 호출과 __shutdownNow__ 메서드 호출로 되어 있다. 이는 오류 정보를 출력하고 스레드를 강제 종료한다는 의미다. 이런 예외 처리에서도 타임 아웃과 마찬가지로 이상 처리를 검토할 필요가 있다.
 <br/>
 <br/>
+### Thread Safe
+멀티 스레드로 동작하는 프로그램에서 개발자가 의도한 대로 동작하는 것을 가리킨다.  
+전혀 다른 일을 처리 할 때는 문제가 없겠으나, 공유자원을 참조할 때 개발자가 반드시 처리를 해줘야한다.
+<br/>
 {% highlight java %}
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -235,7 +239,8 @@ public class UnsafeSample {
 내부적으로 굉장히 빠른 속도로 일을 처리하고 있을때, date1이 1989/03/10 찍고 있는데, 갑자기 date2도 SimpleDateFormat 클래스를 동시에 사용하기 때문에 발생한 것이다.
 <br/>
 <br/>
-### synchronized를 이용한 해결
+<br/>
+### synchronized를 이용한 문제해결
 * 하나의 객체를 여러 스레드에서 동시에 사용할 경우
 * static으로 선언한 객체를 여러 스레드에서 동시에 사용할 경우
 <br/>
@@ -301,5 +306,4 @@ public class UnsafeSample {
 <br/>
 <br/>
 ### 출처
-* 제목 : 실무에서 바로 통하는 자바  
-* 출판사 : 한빛미디어
+* 책 : 실무에서 바로 통하는 자바, 자바 성능 튜닝 이야기
