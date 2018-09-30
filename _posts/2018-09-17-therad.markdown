@@ -175,6 +175,131 @@ public class ThreadPoolSample implements Runnable {
 또한 , __InterruptedException__이 발생했을 떄의 처리가 예외 클래스의 __printstacktrace__ 메서드 호출과 __shutdownNow__ 메서드 호출로 되어 있다. 이는 오류 정보를 출력하고 스레드를 강제 종료한다는 의미다. 이런 예외 처리에서도 타임 아웃과 마찬가지로 이상 처리를 검토할 필요가 있다.
 <br/>
 <br/>
+{% highlight java %}
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+public class UnsafeSample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		DateFormat unsafeDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		
+		Calendar cal1 = Calendar.getInstance();
+		cal1.set(1989, Calendar.MARCH,10);
+		Date date1 = cal1.getTime();
+		
+		Calendar cal2 = Calendar.getInstance();
+		cal2.set(2020, Calendar.JUNE,20);
+		Date date2 = cal2.getTime();
+		
+		Thread thread1 = new Thread(() ->  {
+			for (int i = 0; i < 100; i++) {
+				try {
+					String result = unsafeDateFormat.format(date1);
+
+
+					System.out.println("Thread1 : " + result);
+				} catch (Exception e) {
+					e.printStackTrace();
+					break;
+				}
+			}
+		});
+		
+		Thread thread2 = new Thread(() ->  {
+			for (int i = 0; i < 100; i++) {
+				try {
+					String result = unsafeDateFormat.format(date2);
+					System.out.println("Thread2 : " + result);
+				} catch (Exception e) {
+					e.printStackTrace();
+					break;
+				}
+			}
+		});
+		
+		System.out.println("스레드 세이프하지 않은 프로그램의 검증을 시작합니다.");
+		thread1.start();
+		thread2.start();
+		
+	}
+}
+{% endhighlight %}
+<br/>
+콘솔을 실행해서 결과를 보면 Thread1은 1989/03/10이 100번, Thread2는 2020/06/20이 100번이 출력되어야 한다.  
+하지만 Thread1과 Thread2를 자세히 살펴보면, 출력 결과들이 섞여서 나온다. 왜일까?  
+내부적으로 굉장히 빠른 속도로 일을 처리하고 있을때, date1이 1989/03/10 찍고 있는데, 갑자기 date2도 SimpleDateFormat 클래스를 동시에 사용하기 때문에 발생한 것이다.
+<br/>
+<br/>
+### synchronized를 이용한 해결
+* 하나의 객체를 여러 스레드에서 동시에 사용할 경우
+* static으로 선언한 객체를 여러 스레드에서 동시에 사용할 경우
+<br/>
+{% highlight java %}
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+public class UnsafeSample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		DateFormat unsafeDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		
+		Calendar cal1 = Calendar.getInstance();
+		cal1.set(1989, Calendar.MARCH,10);
+		Date date1 = cal1.getTime();
+		
+		Calendar cal2 = Calendar.getInstance();
+		cal2.set(2020, Calendar.JUNE,20);
+		Date date2 = cal2.getTime();
+		
+		Thread thread1 = new Thread(() ->  {
+			for (int i = 0; i < 100; i++) {
+				try {
+					String result;
+					synchronized(unsafeDateFormat) {
+						result = unsafeDateFormat.format(date1);
+					}
+
+					System.out.println("Thread1 : " + result);
+				} catch (Exception e) {
+					e.printStackTrace();
+					break;
+				}
+			}
+		});
+		
+		Thread thread2 = new Thread(() ->  {
+			for (int i = 0; i < 100; i++) {
+				try {
+					String result;
+					synchronized(unsafeDateFormat) {
+						result = unsafeDateFormat.format(date2);
+					}
+					System.out.println("Thread2 : " + result);
+				} catch (Exception e) {
+					e.printStackTrace();
+					break;
+				}
+			}
+		});
+		
+		System.out.println("스레드 세이프하지 않은 프로그램의 검증을 시작합니다.");
+		thread1.start();
+		thread2.start();
+		
+	}
+}
+{% endhighlight %}
+<br/>
+<br/>
 ### 출처
 * 제목 : 실무에서 바로 통하는 자바  
 * 출판사 : 한빛미디어
