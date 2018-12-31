@@ -762,7 +762,7 @@ template {
 
 *, *::after, *::before {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 h2 {
@@ -784,7 +784,7 @@ html {
 
 body {
   font-family: 'Lato', sans-serif;
-  /* color: #515151; */
+  color: #452f27;
   background-color: #fbfbfb;
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -934,12 +934,12 @@ table tfoot td {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
@@ -947,11 +947,11 @@ table tfoot td {
   width: 240px;
   height: 100%;
   padding: 20px 10px;
-  background-color: #ffffff;
+  background-color: #ffd800;
 }
 
 .about {
-  margin: 0 0 40px;
+  /* margin: 0 0 40px; */
   text-align: center;
 }
 
@@ -960,20 +960,21 @@ table tfoot td {
   height: 100px;
   margin: 0 auto 10px;
   -webkit-border-radius: 100%;
-          border-radius: 100%;
+  border-radius: 100%;
   overflow: hidden;
-  background-color: #333030;
+  /* background-color: #333333; */
+  background-size: 30px;
 }
 
 .about img {
   width: 100%;
   height: 100%;
   -webkit-border-radius: 50%;
-          border-radius: 50%;
+  border-radius: 50%;
   -webkit-transition: -webkit-transform 0.35s;
   transition: -webkit-transform 0.35s;
   -o-transition: transform 0.35s;
-  transition: transform 0.35s;
+  /* transition: transform 0.35s; */
   transition: transform 0.35s, -webkit-transform 0.35s;
 }
 
@@ -989,7 +990,7 @@ table tfoot td {
   padding-bottom: 15px;
   font-size: 16px;
   text-transform: uppercase;
-  color: #333030;
+  color: #452f27;
   font-weight: 700;
 }
 
